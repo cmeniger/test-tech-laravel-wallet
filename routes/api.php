@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Api\V1\AccountController;
+use App\Http\Controllers\Api\V1\DeleteWalletRecurringTransfersController;
 use App\Http\Controllers\Api\V1\GetWalletRecurringTransferLogsController;
 use App\Http\Controllers\Api\V1\GetWalletRecurringTransfersController;
 use App\Http\Controllers\Api\V1\LoginController;
@@ -16,4 +17,5 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->prefix('v1')->group(functio
     Route::post('/wallet/send-money', SendMoneyController::class);
     Route::get('/wallet/recurring-transfer', GetWalletRecurringTransfersController::class);
     Route::get('/wallet/recurring-transfer/{id}/logs', GetWalletRecurringTransferLogsController::class);
+    Route::delete('/wallet/recurring-transfer/{id}', DeleteWalletRecurringTransfersController::class);
 });
