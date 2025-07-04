@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Actions\PerformWalletTransaction;
 use App\Enums\WalletTransactionType;
 use App\Exceptions\InsufficientBalance;
+use App\Mail\LowBalanceMail;
 use App\Models\Wallet;
 
 use function Pest\Laravel\assertDatabaseCount;
@@ -70,6 +71,8 @@ test('cannot perform a debit transaction if balance is insufficient', function (
 });
 
 test('force a debit transaction when balance is insufficient', function () {
+    Mail::fake();
+    
     $wallet = Wallet::factory()->forUser()->create();
 
     $this->action->execute(wallet: $wallet, type: WalletTransactionType::DEBIT, amount: 100, reason: 'test', force: true);
@@ -87,4 +90,14 @@ test('force a debit transaction when balance is insufficient', function () {
         'type' => WalletTransactionType::DEBIT,
         'reason' => 'test',
     ]);
+});
+
+test('low balance email is sent', function () {
+    Mail::fake();
+    
+    $wallet = Wallet::factory()->forUser()->create(['balance' => 1500]);
+
+    $this->action->execute(wallet: $wallet, type: WalletTransactionType::DEBIT, amount: 600, reason: 'test', force: true);
+
+    Mail::assertSent(LowBalanceMail::class);
 });
