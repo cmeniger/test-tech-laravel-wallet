@@ -13,7 +13,7 @@ class DashboardController
     {
         // Check if the user has a wallet, if not, create one
         $createWalletForUser($request->user());
-        
+
         $transactions = $request->user()->wallet->transactions()->with('transfer')->orderByDesc('id')->get();
         $balance = $request->user()->wallet->balance;
 

@@ -12,6 +12,6 @@ readonly class SendEmailWhenLowBalance
 {
     public function __invoke(User $user): void
     {
-        Mail::to(users: $user->email)->send(mailable: new LowBalanceMail());
+        Mail::to(users: $user->email)->send(mailable: new LowBalanceMail);
     }
 }

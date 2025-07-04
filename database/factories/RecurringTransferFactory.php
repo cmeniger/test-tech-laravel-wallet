@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Wallet;
 use App\Models\RecurringTransfer;
+use App\Models\Wallet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +22,7 @@ class RecurringtransferFactory extends Factory
             'frequency' => 0,
             'reason' => '',
             'start_at' => now(),
-            'end_at' => now()->addYear(),   
+            'end_at' => now()->addYear(),
         ];
     }
 

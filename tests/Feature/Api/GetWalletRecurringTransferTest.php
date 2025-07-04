@@ -13,7 +13,7 @@ test('get recurring transfers', function () {
     $user = User::factory()
         ->has(Wallet::factory()->richChillGuy())
         ->create(['name' => 'John Doe', 'email' => 'test@test.com']);
-    
+
     $otherUser = User::factory()
         ->has(Wallet::factory()->richChillGuy())
         ->create(['name' => 'John Doe', 'email' => 'other@test.com']);
@@ -26,7 +26,7 @@ test('get recurring transfers', function () {
             'source_id' => $user->wallet->id,
             'target_id' => $user->wallet->id,
         ]);
-    
+
     RecurringTransfer::factory()
         ->count(3)
         ->create([

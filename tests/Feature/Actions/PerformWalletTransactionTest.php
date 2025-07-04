@@ -72,7 +72,7 @@ test('cannot perform a debit transaction if balance is insufficient', function (
 
 test('force a debit transaction when balance is insufficient', function () {
     Mail::fake();
-    
+
     $wallet = Wallet::factory()->forUser()->create();
 
     $this->action->execute(wallet: $wallet, type: WalletTransactionType::DEBIT, amount: 100, reason: 'test', force: true);
@@ -94,7 +94,7 @@ test('force a debit transaction when balance is insufficient', function () {
 
 test('low balance email is sent', function () {
     Mail::fake();
-    
+
     $wallet = Wallet::factory()->forUser()->create(['balance' => 1500]);
 
     $this->action->execute(wallet: $wallet, type: WalletTransactionType::DEBIT, amount: 600, reason: 'test', force: true);
