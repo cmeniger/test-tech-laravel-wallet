@@ -14,6 +14,12 @@ use Throwable;
 
 readonly class PerformWalletTransaction
 {
+    private const LOW_BALANCE_THRESHOLD = 1000;
+
+    public function __construct(
+        private SendEmailWhenLowBalance $sendEmailWhenLowBalance
+    ) {}
+
     /**
      * @throws InsufficientBalance
      */
@@ -46,6 +52,11 @@ readonly class PerformWalletTransaction
             $wallet->increment('balance', $amount);
         } else {
             $wallet->decrement('balance', $amount);
+
+            // Trigger an action to send an email when the balance is low
+            if ($wallet->balance < self::LOW_BALANCE_THRESHOLD) {
+                ($this->sendEmailWhenLowBalance)($wallet->user);
+            }
         }
     }
 
