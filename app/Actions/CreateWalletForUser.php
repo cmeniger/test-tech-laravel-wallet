@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 readonly class CreateWalletForUser
 {
-    public function __construct(private User $user) {}
-
     public function __invoke(User $user): User
     {
         if ($user->wallet()->exists()) {

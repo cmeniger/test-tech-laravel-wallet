@@ -11,8 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $transfer_id
+ * @property int $source_id
+ * @property int $target_id
+ * @property int $amount
+ * @property int $frequency
  * @property string $reason
+ * @property CarbonImmutable $start_at
+ * @property CarbonImmutable $end_at
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $updated_at
  */
@@ -31,7 +36,10 @@ class RecurringTransfer extends Model
     ];
 
     protected $casts = [
-        'status' => 'string',
+        'created_at' => 'immutable_datetime',
+        'updated_at' => 'immutable_datetime',
+        'start_at' => 'immutable_datetime',
+        'end_at' => 'immutable_datetime',
     ];
 
     public function source()

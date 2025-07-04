@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<RecurringTransfer>
  */
-class RecurringtransferFactory extends Factory
+class RecurringTransferFactory extends Factory
 {
     public function definition(): array
     {
