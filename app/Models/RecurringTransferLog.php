@@ -15,10 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property RecurringTransferStatus $status
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $updated_at
- *
- * @ method static UserModelFactory factory(...$parameters)
  */
-class RecuringTransferLog extends Model
+class RecurringTransferLog extends Model
 {
     use HasFactory, Timestamp;
 
@@ -37,6 +35,6 @@ class RecuringTransferLog extends Model
 
     public function transfer()
     {
-        return $this->belongsTo(RecuringTransfer::class, 'transfer_id');
+        return $this->belongsTo(RecurringTransfer::class, 'transfer_id');
     }
 }

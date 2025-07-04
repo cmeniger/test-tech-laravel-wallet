@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Wallet;
+use App\Models\RecurringTransfer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Wallet>
+ * @extends Factory<RecurringTransfer>
  */
-class Recurringtransfer extends Factory
+class RecurringtransferFactory extends Factory
 {
     public function definition(): array
     {
@@ -20,6 +21,8 @@ class Recurringtransfer extends Factory
             'amount' => 0,
             'frequency' => 0,
             'reason' => '',
+            'start_at' => now(),
+            'end_at' => now()->addYear(),   
         ];
     }
 

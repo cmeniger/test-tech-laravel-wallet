@@ -28,4 +28,9 @@ class Wallet extends Model
     {
         return $this->hasMany(WalletTransaction::class);
     }
+
+    public function recurringTransfers(): HasMany
+    {
+        return $this->hasMany(RecurringTransfer::class, 'source_id');
+    }
 }

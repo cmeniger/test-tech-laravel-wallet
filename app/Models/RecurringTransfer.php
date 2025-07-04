@@ -2,17 +2,30 @@
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
+use Carbon\Traits\Timestamp;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RecuringTransfer extends Model
+/**
+ * @property int $id
+ * @property int $transfer_id
+ * @property string $reason
+ * @property CarbonImmutable $created_at
+ * @property CarbonImmutable $updated_at
+ */
+class RecurringTransfer extends Model
 {
+    use HasFactory, Timestamp;
+
     protected $fillable = [
         'source_id',
         'target_id',
         'amount',
         'frequency',
         'reason',
-        'status',
+        'start_at',
+        'end_at',
     ];
 
     protected $casts = [
@@ -31,6 +44,6 @@ class RecuringTransfer extends Model
 
     public function logs()
     {
-        return $this->hasMany(RecuringTransferLog::class, 'transfer_id');
+        return $this->hasMany(RecurringTransferLog::class, 'transfer_id');
     }
 }

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Enums\RecurringTransferStatus;
-use App\Models\Wallet;
+use App\Models\RecurringTransferLog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Wallet>
+ * @extends Factory<RecurringTransferLog>
  */
-class RecurringtransferLog extends Factory
+class RecurringtransferLogFactory extends Factory
 {
     public function definition(): array
     {
