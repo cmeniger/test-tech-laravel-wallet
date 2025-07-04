@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
 use function Pest\Laravel\assertAuthenticated;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
@@ -19,6 +20,9 @@ test('new users can register', function () {
         'password' => 'password',
         'password_confirmation' => 'password',
     ]);
+
+    $user = User::where(column: 'email', operator: '=', value: 'test@example.com')->first();
+    $this->assertTrue($user?->wallet()?->exists());
 
     assertAuthenticated();
     $response->assertRedirect(route('dashboard', absolute: false));
