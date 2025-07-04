@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\RecurringTransferStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -24,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('recurring_transfers_logs', function (Blueprint $table) {
+        Schema::create('recurring_transfer_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transfer_id')->constrained('recurring_transfers');
             $table->enum('status', array_column(RecurringTransferStatus::cases(), 'value'));
@@ -38,7 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recurring_transfers_logs');
+        Schema::dropIfExists('recurring_transfer_logs');
         Schema::dropIfExists('recurring_transfers');
     }
 };

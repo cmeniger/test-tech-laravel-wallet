@@ -18,7 +18,7 @@ class RecurringtransferLogFactory extends Factory
         return [
             'transfer_id' => 0,
             'status' => RecurringTransferStatus::VALID,
-            "comment" => '',
+            'comment' => '',
         ];
     }
 

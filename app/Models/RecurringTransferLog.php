@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Enums\RecurringTransferStatus;
@@ -27,8 +29,6 @@ class RecurringTransferLog extends Model
     ];
 
     protected $casts = [
-        'status' => 'string',
-        'comment' => 'string',
         'created_at' => 'immutable_datetime',
         'updated_at' => 'immutable_datetime',
     ];
